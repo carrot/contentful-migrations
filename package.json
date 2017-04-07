@@ -1,0 +1,34 @@
+{
+  "name": "contentful-migrations",
+  "description": "programmatic content model control for contentful",
+  "version": "0.0.0",
+  "author": "Jeff Escalante",
+  "ava": {
+    "verbose": "true"
+  },
+  "bugs": "https://github.com/carrot/contentful-migrations/issues",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "coveralls": "^2.11.14",
+    "nyc": "^8.3.2",
+    "snazzy": "^5.0.0",
+    "standard": "^8.4.0"
+  },
+  "engines": {
+    "node": ">= 6"
+  },
+  "homepage": "https://github.com/carrot/contentful-migrations",
+  "license": "MIT",
+  "main": "lib",
+  "repository": "carrot/contentful-migrations",
+  "scripts": {
+    "test": "nyc ava",
+    "lint": "standard | snazzy",
+    "coverage": "nyc ava && nyc report --reporter=html && open ./coverage/index.html",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "dependencies": {
+    "node-fetch": "^1.6.3",
+    "promise-throttle": "^0.3.1"
+  }
+}

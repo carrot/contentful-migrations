@@ -26,13 +26,13 @@ Easiest way to get an idea of how to use this is an example!
 ```js
 const Migrations = require('contentful-migrations')
 
-const migrate = new Migrations({
+const migration = new Migrations({
   id: 'xxx',
   token: 'xxx',
   models: 'path/to/models/folder'
 })
 
-migrate.update().then(console.log)
+migration.migrateContentTypes().then(console.log)
 ```
 
 The `id` and `token` are your contentful space id and management token, respectively. The `models` param is a path to a folder that contains one or more model definitions. The model definitions are not super well documented by contentful. First, again, an example of a model file:

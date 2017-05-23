@@ -124,7 +124,8 @@ const migration = new Migrations({
 migration.setModelsPath('different/path/to/models')
 migration.setEntriesPath('different/path/to/entries')
 
-// Create entries from folder in the configured space, using the supplied `id` // if provided, or letting Contentful generate one if not.
+// Create entries from folder in the configured space, using the supplied `id`
+// if provided, or letting Contentful generate one if not.
 migration.seedEntries().then(console.log)
 
 // Update entries from folder in the configured space

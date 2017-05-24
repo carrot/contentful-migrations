@@ -36,7 +36,7 @@ const migration = new Migrations({
 migration.migrateContentTypes().then(console.log)
 ```
 
-The `id` and `token` are your contentful space id and management token, respectively. The `models` param is a path to a folder that contains one or more model definitions. 
+The `id` and `token` are your contentful space id and management token, respectively. The `models` param is a path to a folder that contains one or more model definitions.
 
 The model definitions are not super well documented by contentful. These fields were reverse-engineered out of the API response for when you manually create the content type model from their interface then fetch it via API. Better docs would be great from contentful, or from a friendly contributor who would be interested in adding them to this readme. In general, what you see above will cover most use cases for a content type though.
 
@@ -107,7 +107,7 @@ This looks complex, but really just describes all the things you set up in your 
 So, basically you make a folder full of the js model definitions, then just pass the path to that folder and run the migration library, and it will make the magic happen. You can pass a different environment's id depending on where you want it to update.
 
 #### Seeding/Migrating Entries (for Content Types)
-Migrating (or seeding) entries works much like migrating content types. 
+Migrating (or seeding) entries works much like migrating content types.
 First, you set up the migration client making sure to provide a path to a folder of `entries`.
 
 ```js
@@ -132,16 +132,16 @@ migration.seedEntries().then(console.log)
 migration.migrateEntries().then(console.log)
 ```
 
-An entry file simply needs a unique `id`, a `contentTypeId`, and a `fields` object containing the desired values for each field defined on the entry's content type model. This is more clearly demonstrated below with an example of an entry file (using the `Author` model above):
+An entry file simply exports an `Array` of Entry Objects, each with a unique `id`, a `contentTypeId`, and a `fields` object containing the desired values for each field defined on the entry's content type model. This is more clearly demonstrated below with an example of an entry file (using the `Author` model above):
 
 (_Note: You may choose to use Contentful's Entry object as a guide and leave its `sys` metadata in place and/or pull the desired values from there. `contentful-migration`'s create and update functions will use the `id` in `sys` over the top level `id` if available._)
 
 ```js
-module.exports = {
+module.exports = [{
   "id": "author1", // *required* for updating (migrating)
   "contentTypeId": "author", // *required* for seeding
   /** optional, but takes precedence over above keys if provided
-  "sys": { 
+  "sys": {
     "id": "author1",
     "contentType": { // content type meta data, per contentful docs
       "sys": {
@@ -190,7 +190,7 @@ module.exports = {
       }
     }
   }
-}
+}]
 ```
 
 ## Difference between Seeding and Migrating Entries
